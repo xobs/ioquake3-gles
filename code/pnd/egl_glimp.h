@@ -14,7 +14,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
-#include <GLES/egl.h>
+#include <EGL/egl.h>
 #include <GLES/gl.h>
 
 #include "egl_input.h"

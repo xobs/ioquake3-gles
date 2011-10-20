@@ -38,7 +38,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #ifdef PANDORA
 
-#include <GLES/egl.h>
+#include <EGL/egl.h>
 #include <GLES/gl.h>
 
 #include "../pnd/egl_glimp.h"
