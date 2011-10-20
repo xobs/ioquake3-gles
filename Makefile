@@ -314,12 +314,12 @@ ifeq ($(PLATFORM),linux)
   endif
   ifeq ($(ARCH),arm)
     BASE_CFLAGS += -DPANDORA -I$(PNDSDK)/usr/include
-    OPTIMIZE += -O3 -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=softfp \
+    OPTIMIZE += -O3 -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 \
 			-mfpu=neon -ftree-vectorize -ffast-math -fomit-frame-pointer -fno-strict-aliasing -fsingle-precision-constant
     SDL_CFLAGS=`$(PNDSDK)/usr/bin/sdl-config --cflags`
     SDL_LIBS=`$(PNDSDK)/usr/bin/sdl-config --libs`
     BASE_CFLAGS += -I$(PNDSDK)/usr/include/EGL/ -I$(PNDSDK)/usr/include/GLES/
-    OPTIMIZEVM = -O3 -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=softfp \
+    OPTIMIZEVM = -O3 -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 \
 			-mfpu=neon -ftree-vectorize -ffast-math -fomit-frame-pointer -fno-strict-aliasing -fsingle-precision-constant
   endif
   endif
