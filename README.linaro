@@ -1,0 +1,14 @@
+How to run ioquake3 on Linux desktop
+====================================
+
+1. Set configuration (q3config.cfg) to use a standard Linux desktop
+
+seta usbk "1"
+seta usbm "2"
+seta x11 "1"
+
+2. Install a suitable set of game data (pk3) like the original Quake3 or
+   openarena.
+
+Note: tested with Quake3 1.32 point release.
+
