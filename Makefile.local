@@ -1,6 +1,3 @@
-GCC=arm-none-linux-gnueabi-gcc
-CC=arm-none-linux-gnueabi-gcc
-
 ARCH=arm
 
 BUILD_CLIENT=1
