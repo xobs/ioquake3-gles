@@ -11,8 +11,6 @@
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 
-//#include <SDL/SDL.h>
-
 #include "egl_glimp.h"
 #include "../client/client.h"
 #include "../renderer/tr_local.h"
@@ -107,8 +105,6 @@ static void make_window(Display * dpy, Screen * scr, EGLDisplay eglDisplay,
 	int XResult = BadImplementation;
 	int blackColour;
 	EGLint cfg_attribs[] = {
-		//EGL_NATIVE_VISUAL_TYPE, 0,
-
 		/* RGB565 */
 		EGL_BUFFER_SIZE, 16,
 		EGL_RED_SIZE, 5,
@@ -260,25 +256,6 @@ static void GLimp_InitExtensions( void )
 
 	// GL_EXT_texture_env_add
 	glConfig.textureEnvAddAvailable = qtrue; //qfalse;
-#if 0
-	if ( GLimp_HaveExtension( "EXT_texture_env_add" ) )
-	{
-		if ( r_ext_texture_env_add->integer )
-		{
-			glConfig.textureEnvAddAvailable = qtrue;
-			ri.Printf( PRINT_ALL, "...using GL_EXT_texture_env_add\n" );
-		}
-		else
-		{
-			glConfig.textureEnvAddAvailable = qfalse;
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_texture_env_add\n" );
-		}
-	}
-	else
-	{
-		ri.Printf( PRINT_ALL, "...GL_EXT_texture_env_add not found\n" );
-	}
-#endif
 
 	// GL_ARB_multitexture
 	/*
@@ -317,61 +294,13 @@ static void GLimp_InitExtensions( void )
 			ri.Printf( PRINT_ALL, "...ignoring GL_ARB_multitexture\n" );
 		}
 	}
-#if 0
-	else
-	{
-		ri.Printf( PRINT_ALL, "...GL_ARB_multitexture not found\n" );
-	}
-#endif
 
-#if 0
-	// GL_EXT_compiled_vertex_array
-	if ( GLimp_HaveExtension( "GL_EXT_compiled_vertex_array" ) )
-	{
-		if ( r_ext_compiled_vertex_array->value )
-		{
-			ri.Printf( PRINT_ALL, "...using GL_EXT_compiled_vertex_array\n" );
-			qglLockArraysEXT = ( void ( APIENTRY * )( GLint, GLint ) ) SDL_GL_GetProcAddress( "glLockArraysEXT" );
-			qglUnlockArraysEXT = ( void ( APIENTRY * )( void ) ) SDL_GL_GetProcAddress( "glUnlockArraysEXT" );
-			if (!qglLockArraysEXT || !qglUnlockArraysEXT)
-			{
-				ri.Error (ERR_FATAL, "bad getprocaddress");
-			}
-		}
-		else
-		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_compiled_vertex_array\n" );
-		}
-	}
-	else
-#endif
 	{
 		ri.Printf( PRINT_ALL, "...GL_EXT_compiled_vertex_array not found\n" );
 	}
 
 	textureFilterAnisotropic = qfalse;
-#if 0
-	if ( GLimp_HaveExtension( "GL_EXT_texture_filter_anisotropic" ) )
-	{
-		if ( r_ext_texture_filter_anisotropic->integer ) {
-			qglGetIntegerv( GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, (GLint *)&maxAnisotropy );
-			if ( maxAnisotropy <= 0 ) {
-				ri.Printf( PRINT_ALL, "...GL_EXT_texture_filter_anisotropic not properly supported!\n" );
-				maxAnisotropy = 0;
-			}
-			else
-			{
-				ri.Printf( PRINT_ALL, "...using GL_EXT_texture_filter_anisotropic (max: %i)\n", maxAnisotropy );
-				textureFilterAnisotropic = qtrue;
-			}
-		}
-		else
-		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_texture_filter_anisotropic\n" );
-		}
-	}
-	else
-#endif
+
 	{
 		ri.Printf( PRINT_ALL, "...GL_EXT_texture_filter_anisotropic not found\n" );
 	}
@@ -455,22 +384,6 @@ void GLimp_Init(void)
 
 	GLimp_InitExtensions();
 
-#if 0
-	if ( !SDL_WasInit(SDL_INIT_VIDEO) )
-	{
-		char driverName[ 64 ];
-
-		if ( SDL_Init(SDL_INIT_VIDEO) == -1 )
-		{
-			ri.Printf( PRINT_ALL, "SDL_Init( SDL_INIT_VIDEO ) FAILED (%s)\n",
-					SDL_GetError());
-		}
-
-		SDL_VideoDriverName( driverName, sizeof( driverName ) - 1 );
-		ri.Printf( PRINT_ALL, "SDL using driver \"%s\"\n", driverName );
-		Cvar_Set( "r_sdlDriver", driverName );
-	}
-#endif
 	IN_Init( );
 
 	ri.Printf(PRINT_ALL, "------------------\n");
