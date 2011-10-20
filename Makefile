@@ -339,7 +339,7 @@ ifeq ($(PLATFORM),linux)
   CLIENT_LIBS=$(SDL_LIBS) -lGL
 
   ifeq ($(ARCH),arm)
-    CLIENT_LIBS = $(SDL_LIBS) -lGLES_CM -lX11
+    CLIENT_LIBS = $(SDL_LIBS) -lGLESv1_CM -lX11
   endif
 
   ifeq ($(USE_OPENAL),1)
